@@ -1,8 +1,9 @@
 const redux= require('redux')
 const createStore=redux.createStore
+const combineReducer=redux.combineReducers
 
 const BUY_CAKE="BUY_CAKE"
-const BUY_Ice_Cream="BUY_Ice_Cream"
+const BUY_ICE_CREAM="BUY_ICE_CREAM"
 function buyCake(){
     return{
         type: BUY_CAKE,
@@ -11,23 +12,51 @@ function buyCake(){
 }
 function buyIceCream(){
     return{
-        type: BUY_Ice_Cream,
+        type: BUY_ICE_CREAM,
         info:"First redux actoin",
     }
 }
-/// (previousState,action)=>{newState}
 
-const initialState={
-    numOfCakes:10,
+const initialIceState={
     numOfIceCream:20
 }
-const reducer=(state=initialState,action)=>{
+
+const initialCakeState={
+    numOfCakes:10,
+}
+
+/// (previousState,action)=>{newState}
+// const initialState={
+//     numOfCakes:10,
+//     numOfIceCream:20
+// }
+// const reducer=(state=initialState,action)=>{
+//     switch(action.type){
+//         case BUY_CAKE:return{
+//             ...state,
+//             numOfCakes:state.numOfCakes -1
+//         }
+//         case BUY_Ice_Cream:return{
+//             ...state,
+//             numOfIceCream:state.numOfIceCream -1
+//         }
+//         default : return state
+//     }////  switch
+// }
+
+const CakeReducer=(state=initialCakeState,action)=>{
     switch(action.type){
         case BUY_CAKE:return{
             ...state,
             numOfCakes:state.numOfCakes -1
         }
-        case BUY_Ice_Cream:return{
+        default : return state
+    }////  switch
+}
+
+const IceReducer=(state=initialIceState,action)=>{
+    switch(action.type){
+        case BUY_ICE_CREAM:return{
             ...state,
             numOfIceCream:state.numOfIceCream -1
         }
@@ -35,7 +64,11 @@ const reducer=(state=initialState,action)=>{
     }////  switch
 }
 
-const store=createStore(reducer)
+const rootReducer=combineReducer({
+    cake:CakeReducer,
+    ice:IceReducer
+})
+const store=createStore(rootReducer)
 console.log("initial state",store.getState())
 const unsubscribe=store.subscribe(()=>{
 console.log("UpdateState",store.getState())   
