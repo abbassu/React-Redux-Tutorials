@@ -4,6 +4,7 @@ import IceReducer from "./icdcream/IceCreamReducer";
 import { combineReducers } from "redux";
 import logger from "redux-logger";
 import { applyMiddleware } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer=combineReducers({
     cake:cakeReducer,
@@ -11,5 +12,5 @@ const rootReducer=combineReducers({
 })
 
 
-const store= createStore(rootReducer,applyMiddleware(logger))///exort this store to rea t app
+const store= createStore(rootReducer,composeWithDevTools(applyMiddleware(logger)))///exort this store to rea t app
 export default store
