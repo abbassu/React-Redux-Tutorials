@@ -7,6 +7,7 @@ import HooksIceContainer from './component/HooksIceContainer';
 import NewCakeContainer from './component/NewCakeContainer';
 import ItemContainer from './component/itemContainer';
 import Ff from './component/ff';
+import Usercontainer from './component/Usercontainer';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           {/* <NewCakeContainer/> */}
           <ItemContainer cake/>
           <ItemContainer/>
+          <Usercontainer/>
+          {/* <Usercontainer/> */}
 
       </div>
     </Provider>
