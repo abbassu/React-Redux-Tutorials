@@ -1,3 +1,5 @@
 import { buyCake } from "./cake/cakeAction";
 
-export default buyCake 
+import { buyIce } from "./icdcream/IceCreamAction";
+
+export {buyCake,buyIce}
